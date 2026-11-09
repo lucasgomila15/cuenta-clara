@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#15443c">
+  <title>Cuenta Clara · Finanzas personales</title>
+  <link rel="stylesheet" href="./style.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <header><div class="frame top"><span class="brand"><i aria-hidden="true"></i>Cuenta Clara</span><a id="demoLink" href="?ejemplo">Ver ejemplo</a></div></header>
+  <main class="frame">
+    <p class="notice" id="notice" role="status" hidden></p>
+    <section class="heading">
+      <div><p class="eyebrow">Finanzas personales</p><h1>Mi mes</h1></div>
+      <div class="month"><button id="prev" aria-label="Mes anterior">‹</button><strong id="monthText" aria-live="polite"></strong><button id="next" aria-label="Mes siguiente">›</button></div>
+    </section>
+    <section class="metrics" aria-label="Resumen mensual">
+      <article class="balance"><span>Saldo del mes</span><strong id="balance">$ 0</strong><small>Ingresos menos gastos</small></article>
+      <article><span><b class="symbol income" aria-hidden="true">↙</b> Ingresos</span><strong id="income">$ 0</strong><small id="incomeCount"></small></article>
+      <article><span><b class="symbol expense" aria-hidden="true">↗</b> Gastos</span><strong id="expense">$ 0</strong><small id="expenseCount"></small></article>
+    </section>
+    <div class="panels">
+      <section class="panel ledger"><div class="sectionHead"><h2>Movimientos</h2><button class="primary" id="add">+ Agregar</button></div>
+        <div class="filters" role="group" aria-label="Mostrar movimientos"><button data-filter="all" aria-pressed="true">Todos</button><button data-filter="income" aria-pressed="false">Ingresos</button><button data-filter="expense" aria-pressed="false">Gastos</button></div>
+        <div id="rows"></div>
+      </section>
+      <section class="panel breakdown"><h2>Gastos por categoría</h2><div id="categories"></div></section>
+    </div>
+    <footer>Pesos argentinos (ARS) <span>·</span> <span id="storageLabel">Guardado en este navegador</span></footer>
+  </main>
+  <dialog id="editor"><form id="form"><div class="sectionHead"><h2 id="formTitle">Nuevo movimiento</h2><button type="button" id="close" aria-label="Cerrar">×</button></div>
+    <label>Tipo<select id="kind"><option value="expense">Gasto</option><option value="income">Ingreso</option></select></label>
+    <label>Descripción<input id="description" required maxlength="80" placeholder="Ej. Compra del súper"></label>
+    <div class="fields"><label>Importe en pesos<input id="amount" required inputmode="decimal" placeholder="1500,50"></label><label>Fecha<input id="date" type="date" required min="1000-01-01" max="9999-12-31"></label></div>
+    <label>Categoría<select id="category"></select></label><p id="error" role="alert"></p>
+    <div class="actions"><button type="button" id="remove" class="danger" hidden>Eliminar</button><button type="submit" class="primary">Guardar</button></div>
+  </form></dialog>
+</body>
+</html>
